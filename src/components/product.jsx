@@ -1,0 +1,46 @@
+import { useState } from "react";
+import "./product.css";
+import QuantityPicker from "./quantityPicker";
+import "../services/dataService.js";
+
+
+const Product = (props) => {
+  const [ quantity, setQuantity] = useState(1);
+  const handleQuantityChange = (val) => {
+   setQuantity(val);
+  };
+
+const getTotal = () => {
+  let total = quantity * props.info.price;
+  
+
+
+  return total.toFixed(2);
+};
+
+const handleAdd = () => {
+  console.log("Adding to cart");
+}
+  
+  return (
+    <div className="product">
+      <label className="prod-category">{props.info.category}</label>
+      <img src={"/images/" + props.info.image} alt="Dunks" />
+      <h2>{props.info.title}</h2>
+
+      <div>
+        <label className="total">${getTotal()}</label>
+        <label className="price">${props.info.price.toFixed(2)}</label>
+      </div>
+
+      <div>
+        <QuantityPicker onChange={handleQuantityChange}></QuantityPicker>
+        <button onClick={handleAdd} className= "btn btn-sm btn-info">
+          <i className="fa fa-cart-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Product;
