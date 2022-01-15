@@ -1,13 +1,16 @@
 import "./navBar.css";
 import { Link } from "react-router-dom";
-
+import storeContext from "../context/storeContext";
+import { useContext } from "react";
 
 const NavBar = () => {
+  const cart = useContext(storeContext).cart;
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-        NavBar
+          NavBar
         </Link>
         <button
           className="navbar-toggler"
@@ -31,22 +34,20 @@ const NavBar = () => {
               <Link className="nav-link" to="/catalog">
                 Catalog
               </Link>
-            </li>              
-          
+            </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to= "/about">About</Link>
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
             </li>
           </ul>
           <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            ></input>
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
+            <Link className="btn btn-outline btn-outline-light" to="/cart">
+              <span className="badge bg-primary">{cart.length}</span>
+              {/* &nbsp creates spaces between words or numbers */}
+              &nbsp;View Cart
+            </Link>
           </form>
         </div>
       </div>

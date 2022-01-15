@@ -1,27 +1,31 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./product.css";
 import QuantityPicker from "./quantityPicker";
 import "../services/dataService.js";
-
+import storeContext from "../context/storeContext";
 
 const Product = (props) => {
-  const [ quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const add2Cart = useContext(storeContext).addProductToCart;
+
   const handleQuantityChange = (val) => {
-   setQuantity(val);
+    setQuantity(val);
   };
 
-const getTotal = () => {
-  let total = quantity * props.info.price;
-  
+  const getTotal = () => {
+    let total = quantity * props.info.price;
 
+    return total.toFixed(2);
+  };
 
-  return total.toFixed(2);
-};
+  const handleAdd = () => {
+    let prod = {
+      ...props.info,
+      quantity: quantity,
+    };
+    add2Cart(); // call the function that exsist in the context (check import)
+  };
 
-const handleAdd = () => {
-  console.log("Adding to cart");
-}
-  
   return (
     <div className="product">
       <label className="prod-category">{props.info.category}</label>
@@ -35,7 +39,7 @@ const handleAdd = () => {
 
       <div>
         <QuantityPicker onChange={handleQuantityChange}></QuantityPicker>
-        <button onClick={handleAdd} className= "btn btn-sm btn-info">
+        <button onClick={handleAdd} className="btn btn-sm btn-info">
           <i className="fa fa-cart-plus" aria-hidden="true"></i>
         </button>
       </div>

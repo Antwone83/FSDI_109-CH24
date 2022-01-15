@@ -7,29 +7,30 @@ import "font-awesome/css/font-awesome.min.css";
 import Home from "./components/home";
 import {} from "react-router-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import About from  "./components/about";
+import About from "./components/about";
 import Cart from "./components/cart";
 import Test from "./components/test";
-
+import GlobalContext from "./context/globalContext";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <NavBar></NavBar>
+      <GlobalContext>
+        <BrowserRouter>
+          <NavBar></NavBar>
 
-        <Routes>
-        <Route path="/" element={<Home />} ></Route>
-        <Route path="/catalog" element={<Catalog />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/aboutme" element={<About />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/test" element={<Test />}></Route>
-        </Routes>
-      
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/catalog" element={<Catalog />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/aboutme" element={<About />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/test" element={<Test />}></Route>
+          </Routes>
 
-      <Footer></Footer>
-      </BrowserRouter>
+          <Footer></Footer>
+        </BrowserRouter>
+      </GlobalContext>
     </div>
   );
 }
