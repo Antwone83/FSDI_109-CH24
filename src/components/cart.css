@@ -13,3 +13,16 @@
     text-align: center;
     margin-bottom: 0;
 }
+
+.cart-container {
+    display: flex;
+}
+
+.cart-container .products {
+    flex: 4;
+}
+
+.cart-container .side-menu {
+    flex: 1;
+    background-color: blanchedalmond;
+}

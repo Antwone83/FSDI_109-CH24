@@ -23,13 +23,13 @@ const Product = (props) => {
       ...props.info,
       quantity: quantity,
     };
-    add2Cart(); // call the function that exsist in the context (check import)
+    add2Cart(prod); // call the function that exsist in the context (check import)
   };
 
   return (
     <div className="product">
       <label className="prod-category">{props.info.category}</label>
-      <img src={"/images/" + props.info.image} alt="Dunks" />
+      <img src={"/images/" + props.info.image} alt="Heat" />
       <h2>{props.info.title}</h2>
 
       <div>
